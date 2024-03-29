@@ -58,7 +58,7 @@ gaussian_filter_rsigma = 40
 gaussian_filter_sigma  = 0.5
 distortions            = [0.01]
 </pre>
-By running the command above, each image in images_dir will be read, distored by the parameters in [distortion] section, and
+By running the command above, each image in images_dir will be read, distorted by the parameters in [distortion] section, and
 saved to output_dir.<br>
 
 <br>
