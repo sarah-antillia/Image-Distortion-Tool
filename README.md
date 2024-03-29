@@ -11,6 +11,13 @@ It is based on the code in the following stackoverflow web-site.<br>
 https://stackoverflow.com/questions/41703210/inverting-a-real-valued-index-grid/78031420#78031420
 <br>
 <br>
+In this class, we use the 
+<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html">scipy gaussian_filter</a>
+<pre>
+scipy.ndimage.gaussian_filter(input, sigma, order=0, output=None, mode='reflect', cval=0.0, 
+   truncate=4.0, *, radius=None, axes=None)[source]
+</pre>
+
 This ImageDistorter runs on Python 3.8 or later version. Please install opencv-python and scipy to your Python development enviroment.<br>  
 This tool will be used to augment the image and mask files to train an image segmentation model.<br>
 
@@ -28,11 +35,8 @@ distortion,config file is a ini file as shown below.<br>
 images_dir             = "./images"
 ; Image output directory
 output_dir             = "./distorted"
-
 gaussian_filter_rsigma = 40
-
 gaussian_filter_sigma  = 0.5
-
 ;Specify a list of distorition rate
 distortions            = [0.01, 0.02, 0.03]
 </pre>
@@ -79,7 +83,7 @@ distorted cranes<br>
 
 road_signs <br>
 <img src="./images/road_signs.png" width="640" height="auto"><br>
-distorted cranes<br>
+distorted road_signs<br>
 <img src="./distorted/distorted_0.01road_signs.png" width="640" height="auto"><br>
 
 
