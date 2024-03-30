@@ -5,11 +5,15 @@
 1 ImageDistorter class
 </h3>
 
-This <a href="./ImageDistorter.py">ImageDistorter</a> is a simple python class  to distort an image by using scipy gaussian filter and OpenCV remap.
+This is a simple python class <a href="./ImageDistorter.py">ImageDistorter</a> to distort an image by using scipy gaussian filter and OpenCV remap.
 It is based on the code in the following stackoverflow web-site.<br>
 <br>
 https://stackoverflow.com/questions/41703210/inverting-a-real-valued-index-grid/78031420#78031420
 <br>
+<br>
+Distortion Example by ImageDistorter<br>
+<img src="./distorted3/distorted_0.02MeshedPicture.png" width="640" height="auto"><br>
+
 <br>
 In this class, we use the 
 <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html">scipy gaussian_filter</a>
@@ -86,4 +90,35 @@ road_signs <br>
 distorted road_signs<br>
 <img src="./distorted/distorted_0.01road_signs.png" width="640" height="auto"><br>
 
+
+<h3>
+3. MeshedImage Distortion 
+</h3> 
+Please run the following command to visualize cleary a distortion effect of this tool, <br>
+<pre>
+>python ImageDistorter distortion3.config
+</pre>
+, where distortion.config is the following.<br>
+<pre>
+;distortion3.config
+; 2024/03/30
+[distortion]
+images_dir             = "./meshed_images"
+output_dir             = "./distorted3"
+gaussian_filter_rsigma = 40
+gaussian_filter_sigma  = 0.5
+distortions            = [0.01, 0.02, 0.03]
+</pre>
+Please note that there are three elements in distortions list as shown above.<br>
+By this example, you can easily see the distortion effect by those parameters.
+<br>
+MeshedPicture <br>
+<img src="./meshed_images/MeshedPicture.png" width="640" height="auto"><br>
+<br>
+Distorted rate=0.01 <br>
+<img src="./distorted3/distorted_0.01MeshedPicture.png" width="640" height="auto"><br>
+Distorted rate=0.02 <br>
+<img src="./distorted3/distorted_0.02MeshedPicture.png" width="640" height="auto"><br>
+Distorted rate=0.03 <br>
+<img src="./distorted3/distorted_0.03MeshedPicture.png" width="640" height="auto"><br>
 
