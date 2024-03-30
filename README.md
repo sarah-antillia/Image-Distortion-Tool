@@ -92,7 +92,7 @@ distorted road_signs<br>
 
 
 <h3>
-3. MeshedImage Distortion 
+3. Seeing Is Believing
 </h3> 
 Please run the following command to visualize cleary a distortion effect of this tool, <br>
 <pre>
