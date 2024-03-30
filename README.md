@@ -2,7 +2,7 @@
 
  
 <h3> 
-1 ImageDistorter class
+1 ImageDistorter
 </h3>
 
 This is a simple python class <a href="./ImageDistorter.py">ImageDistorter</a> to distort an image by using scipy gaussian filter and OpenCV remap.
@@ -28,11 +28,11 @@ This tool will be used to augment the image and mask files to train an image seg
 <h3>
 2 ImageDistorter
 </h3> 
-To run ImageDistorter, please specify distortion.config as a command parameter
+To run ImageDistorter, please specify a <i>distortion.config</i> as a command-line parameter as shown below.
 <pre>
 >python ImageDistorter distortion.config
 </pre>
-distortion,config file is a ini file as shown below.<br>
+distortion.config file takes a typical ini file format.<br>
 <pre>
 [distortion]
 ; Image input directory
@@ -41,11 +41,12 @@ images_dir             = "./images"
 output_dir             = "./distorted"
 gaussian_filter_rsigma = 40
 gaussian_filter_sigma  = 0.5
-;Specify a list of distorition rate
+;Specify a list of distortion rate which is less than 1.
 distortions            = [0.01, 0.02, 0.03]
 </pre>
+
 <h3>
-2.1 Run ImageDistorter with distortion.config
+2.1 Run ImageDistorter with a distortion.config
 </h3> 
 
 Please run the following command.
@@ -111,6 +112,7 @@ distortions            = [0.01, 0.02, 0.03]
 </pre>
 Please note that there are three elements in distortions list as shown above.<br>
 By this example, you can easily see the distortion effect by those parameters.
+
 <br>
 MeshedPicture <br>
 <img src="./meshed_images/MeshedPicture.png" width="640" height="auto"><br>
