@@ -95,7 +95,7 @@ distorted road_signs<br>
 <h3>
 3. Seeing Is Believing
 </h3> 
-Please run the following command to visualize cleary a distortion effect of this tool, <br>
+Please run the following command to visualize clearly the distortion effects of this tool, <br>
 <pre>
 >python ImageDistorter distortion3.config
 </pre>
@@ -111,7 +111,7 @@ gaussian_filter_sigma  = 0.5
 distortions            = [0.01, 0.02, 0.03]
 </pre>
 Please note that there are three elements in distortions list as shown above.<br>
-By this example, you can easily see the distortion effect by those parameters.
+By this example, you can easily see the distortion effects by those parameters.
 
 <br>
 MeshedPicture <br>
