@@ -37,9 +37,7 @@ scipy.ndimage.gaussian_filter(input, sigma, order=0, output=None, mode='reflect'
    truncate=4.0, *, radius=None, axes=None)[source]
 
 """
-
 DISTORTION      = "distortion"
-
 """
 ;distortion.config
 [distortion]
@@ -48,13 +46,14 @@ output_dir             = "./distorted"
 gaussian_filter_rsigma = 40
 gaussian_filter_sigma  = 0.5
 distortions            = [0.01, 0.02]
-
-
 """
 
 class ImageDistorter:
 
   def __init__(self, config_file):
+    print("=== ImageDistorter ===")
+    np.random.seed(137)
+
     self.config = ConfigParser(config_file)
 
     self.images_dir = self.config.get(DISTORTION, "images_dir", dvalue="./images")
@@ -68,26 +67,46 @@ class ImageDistorter:
       shutil.rmtree(self.output_dir)
     if not os.path.exists(self.output_dir):
       os.makedirs(self.output_dir)
+    self.config.dump_all()
 
     self.gaussina_filer_rsigma = self.config.get(DISTORTION, "gaussian_filter_rsigma", dvalue=40)
     self.gaussina_filer_sigma  = self.config.get(DISTORTION, "gaussian_filter_sigma",  dvalue=0.5)
     self.distortions           = self.config.get(DISTORTION, "distortions",  dvalue=[0.01, 0.02])
-    np.random.seed(137)
-  
-  
+    self.rsigma = "sigma"  + str(self.gaussina_filer_rsigma)
+    self.sigma  = "rsigma" + str(self.gaussina_filer_sigma)
+
   def distort(self):
-    image_files  = glob.glob(self.images_dir + "/*.jpg")
-    image_files += glob.glob(self.images_dir + "/*.png")
-    image_files += glob.glob(self.images_dir + "/*.bmp")
-    image_files += glob.glob(self.images_dir + "/*.tif")
+    print("=== distort ===")
+    with os.scandir(self.images_dir) as it:
+      for entry in it:
+        if entry.is_dir():
+          print("---dir path {} name {}".format(entry.path, entry.name))
+          self.distort_dir(entry.path, subdir=entry.name)
+          pass
+        elif entry.is_file():
+          print("---file path {} name {}".format(entry.path, entry.name))
+          self.distort_onefile(entry.path, self.output_dir)          
+
+  def distort_dir(self, images_dir, subdir=""):
+    print("=== distort_dir imagesdir:{} subdir:{}".format(images_dir, subdir))
+    output_subdir = os.path.join(self.output_dir, subdir)
+    if os.path.exists(output_subdir):
+      shutil.rmtree(output_subdir)
+    if not os.path.exists(output_subdir):
+      os.makedirs(output_subdir)
+
+    image_files  = glob.glob(images_dir + "/*.jpg")
+    image_files += glob.glob(images_dir + "/*.png")
+    image_files += glob.glob(images_dir + "/*.bmp")
+    image_files += glob.glob(images_dir + "/*.tif")
     if len(image_files) == 0:
       print("Not found image_files "+ self.images_dir)
       return
     for image_file in image_files:
-      self.distort_one(image_file, self.output_dir)
+      self.distort_onefile(image_file, output_subdir)
 
-  def distort_one(self, image_file, output_dir):
-    print("--- distort_one {}".format(image_file))
+  def distort_onefile(self, image_file, output_dir):
+    print("--- distort_onefile {}".format(image_file))
     img  = cv2.imread(image_file)
     basename = os.path.basename(image_file)
   
@@ -103,7 +122,7 @@ class ImageDistorter:
  
     t = np.random.normal(size = shape)
     for size in self.distortions:
-      filename = "distorted_" + str(size) + basename
+      filename = "distorted_" + str(size) + "_" + self.sigma + "_" + self.rsigma + "_" + basename
       output_file = os.path.join(output_dir, filename)    
       dx = gaussian_filter(t, self.gaussina_filer_rsigma, order =(0,1))
       dy = gaussian_filter(t, self.gaussina_filer_rsigma, order =(1,0))

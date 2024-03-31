@@ -1,8 +1,15 @@
-<h2> Image-Distortion-Tool</h2>
+<h2> Image-Distortion-Tool (Updated: 2024/04/01)</h2>
 
- 
+<li>2024/04/01: Modified the output files to be a format of "distorted_{ratio}_rsigma{rsigma}_sigma{sigma}_{origina_filename}". </li>
+<li>2024/04/01: Added Distortion of MultpleMyeloma Dataset. </li>
+
+<a href="#1">1, ImageDistorter</a><br>
+<a href="#2">2, Run ImageDistorter</a><br>
+<a href="#3">3. Seeing Is Believing</a><br>
+<a href="#4">4. MultpleMyeloma Dataset Distortion</a><br>
+<br>
 <h3> 
-1 ImageDistorter
+<a id="1">1. ImageDistorter</a>
 </h3>
 
 This is a simple python class <a href="./ImageDistorter.py">ImageDistorter</a> to distort an image by using scipy gaussian filter and OpenCV remap.
@@ -12,7 +19,7 @@ https://stackoverflow.com/questions/41703210/inverting-a-real-valued-index-grid/
 <br>
 <br>
 Distortion Example by ImageDistorter<br>
-<img src="./distorted3/distorted_0.02MeshedPicture.png" width="640" height="auto"><br>
+<img src="./distorted3/distorted_0.02_rsigma0.5_sigma40_MeshedPicture.png" width="640" height="auto"><br>
 
 <br>
 In this class, we use the 
@@ -26,7 +33,7 @@ This ImageDistorter runs on Python 3.8 or later version. Please install opencv-p
 This tool will be used to augment the image and mask files to train an image segmentation model.<br>
 
 <h3>
-2 ImageDistorter
+<a id="2">2. Run ImageDistorter</a>
 </h3> 
 To run ImageDistorter, please specify a <i>distortion.config</i> as a command-line parameter as shown below.
 <pre>
@@ -78,22 +85,27 @@ Enlarged sample images<br>
 coca-cola <br>
 <img src="./images/coco-cola.png" width="640" height="auto"><br>
 distorted coco-cola<br>
-<img src="./distorted/distorted_0.01coco-cola.png" width="640" height="auto"><br>
+<img src="./distorted/distorted_0.01_rsigma0.5_sigma40_coco-cola.png" width="640" height="auto"><br>
 <br>
-
+<br>
 cranes <br>
 <img src="./images/cranes.jpg" width="640" height="auto"><br>
 distorted cranes<br>
-<img src="./distorted/distorted_0.01cranes.jpg" width="640" height="auto"><br>
-
+<img src="./distorted/distorted_0.01_rsigma0.5_sigma40_cranes.jpg" width="640" height="auto"><br>
+<br>
+MeshedNioh <br>
+<img src="./images/MeshedNioh.png" width="640" height="auto"><br>
+distorted road_signs<br>
+<img src="./distorted/distorted_0.01_rsigma0.5_sigma40_MeshedNioh.png" width="640" height="auto"><br>
+<br>
 road_signs <br>
 <img src="./images/road_signs.png" width="640" height="auto"><br>
 distorted road_signs<br>
-<img src="./distorted/distorted_0.01road_signs.png" width="640" height="auto"><br>
+<img src="./distorted/distorted_0.01_rsigma0.5_sigma40_road_signs.png" width="640" height="auto"><br>
 
 
 <h3>
-3. Seeing Is Believing
+<a id="3">3. Seeing Is Believing</a>
 </h3> 
 Please run the following command to visualize clearly the distortion effects of this tool, <br>
 <pre>
@@ -118,9 +130,122 @@ MeshedPicture <br>
 <img src="./meshed_images/MeshedPicture.png" width="640" height="auto"><br>
 <br>
 Distorted rate=0.01 <br>
-<img src="./distorted3/distorted_0.01MeshedPicture.png" width="640" height="auto"><br>
+<img src="./distorted3/distorted_0.01_rsigma0.5_sigma40_MeshedPicture.png" width="640" height="auto"><br>
 Distorted rate=0.02 <br>
-<img src="./distorted3/distorted_0.02MeshedPicture.png" width="640" height="auto"><br>
+<img src="./distorted3/distorted_0.02_rsigma0.5_sigma40_MeshedPicture.png" width="640" height="auto"><br>
 Distorted rate=0.03 <br>
-<img src="./distorted3/distorted_0.03MeshedPicture.png" width="640" height="auto"><br>
+<img src="./distorted3/distorted_0.015_rsigma0.5_sigma40_MeshedPicture.png" width="640" height="auto"><br>
+
+
+<h3>
+<a id="4">4. MultpleMyeloma Dataset Distortion</a>
+</h3>
+
+<h3>4.1 MultpleMyeloma Dataset</h3>
+
+For a pratical dataset distortion, we have applied this tool to augment MultpleMyeloma Dataset.<br>
+<a href="https://drive.google.com/file/d/1QiGah4_0yY-5B7s2kIZ2AjbEVu2ejB3G/view?usp=sharing">MultipleMyeloma-ImageMask-Dataset_V2_X.zip</a>
+<br>
+On that dataset, please see also <a href="https://github.com/sarah-antillia/MultipleMyeloma-ImageMask-Dataset">MultipleMyeloma-ImageMask-Dataset</a>
+<br>
+Please expand the downloaded ImageMaskDataset and place them under <b>./</b> folder to be
+
+<pre>
+./MultipleMyeloma
+ ├─test
+ │  ├─images
+ │  └─masks
+ ├─train
+ │  ├─images
+ │  └─masks
+ └─valid
+     ├─images
+     └─masks
+</pre>
+ 
+Dataset statistics<br>
+<img src="./_MultipleMyeloma_.png" width="540" height="auto"><br>
+
+<h3>4.2 Distort MultpleMyeloma Dataset</h3>
+Please run the following command.<br>
+<pre>
+>python ImageDistorter.py distortion_multiplemyeloma.config
+</pre>
+, where distortion_multiplemyeloma.config is the following.
+<pre>
+;distortion_multiplemyeloma.config
+; 2024/04/01 (C) antillia.com
+[distortion]
+images_dir             = "./MultipleMyeloma/train"
+output_dir             = "./Distorted-MultipleMyeloma/train"
+gaussian_filter_rsigma = 40
+gaussian_filter_sigma  = 0.5
+distortions            = [0.02, 0.03]
+</pre>
+As shown above, we apply this distortion tool to the train dataset of MultipleMyeloma.<br>
+By running the command above, the following directories will be created.<br>
+<pre>
+./Distorted-MultipleMyeloma
+└─train
+    ├─images
+    └─masks
+</pre>
+Distorted images<br>
+<img src="./asset/Distorted-MultipleMyeloma-train-images.png" width="1024" height="auto"><br><br>
+Distorted masks  <br>
+<img src="./asset/Distorted-MultipleMyeloma-train-mask.png"  width="1024" height="auto"><br><br>
+<br>
+
+By merging the generated "./Distorted-MultipleMyeloma/train" and the original "./MultipleMyeloma" folders, we have finally created
+"Distorted-MultipleMyeloma-ImageMask-Dataset".<br>
+Statistics :<br>
+<img src="./_Distorted-MultpleMyeloma-ImageMask-Dataset_.png" width="540" height="auto"><br>
+<br>
+
+We have uploaded this dataset to the google drive
+<a href="https://drive.google.com/file/d/1mxC2BSbd2btQCeH9oW7nt1FQCklAXsT9/view?usp=sharing">Distorted-MultpleMyeloma-ImageMask-Dataset.zip</a>
+<br>
+
+
+<h3>Dataset Citation</h3>
+The original dataset used here has been take from the following  web site:<br><br>
+<b>SegPC-2021-dataset</b><br>
+SegPC-2021: Segmentation of Multiple Myeloma Plasma Cells in Microscopic Images<br>
+<pre>
+https://www.kaggle.com/datasets/sbilab/segpc2021dataset
+</pre>
+
+<b>Citation:</b><br>
+
+<pre>
+Anubha Gupta, Ritu Gupta, Shiv Gehlot, Shubham Goswami, April 29, 2021, "SegPC-2021: Segmentation of Multiple Myeloma Plasma Cells 
+in Microscopic Images", IEEE Dataport, doi: https://dx.doi.org/10.21227/7np1-2q42.
+
+BibTex
+@data{segpc2021,
+doi = {10.21227/7np1-2q42},
+url = {https://dx.doi.org/10.21227/7np1-2q42},
+author = {Anubha Gupta; Ritu Gupta; Shiv Gehlot; Shubham Goswami },
+publisher = {IEEE Dataport},
+title = {SegPC-2021: Segmentation of Multiple Myeloma Plasma Cells in Microscopic Images},
+year = {2021} }
+
+IMPORTANT:
+If you use this dataset, please cite below publications-
+1. Anubha Gupta, Rahul Duggal, Shiv Gehlot, Ritu Gupta, Anvit Mangal, Lalit Kumar, Nisarg Thakkar, and Devprakash Satpathy, 
+ "GCTI-SN: Geometry-Inspired Chemical and Tissue Invariant Stain Normalization of Microscopic Medical Images," 
+ Medical Image Analysis, vol. 65, Oct 2020. DOI: 
+ (2020 IF: 11.148)
+2. Shiv Gehlot, Anubha Gupta and Ritu Gupta, 
+ "EDNFC-Net: Convolutional Neural Network with Nested Feature Concatenation for Nuclei-Instance Segmentation,"
+ ICASSP 2020 - 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 
+ Barcelona, Spain, 2020, pp. 1389-1393.
+3. Anubha Gupta, Pramit Mallick, Ojaswa Sharma, Ritu Gupta, and Rahul Duggal, 
+ "PCSeg: Color model driven probabilistic multiphase level set based tool for plasma cell segmentation in multiple myeloma," 
+ PLoS ONE 13(12): e0207908, Dec 2018. DOI: 10.1371/journal.pone.0207908
+
+License
+CC BY-NC-SA 4.0
+</pre>
+
 
