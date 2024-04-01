@@ -31,9 +31,9 @@ scipy.ndimage.gaussian_filter(input, sigma, order=0, output=None, mode='reflect'
 
 This ImageDistorter runs on Python 3.8 or later version. Please install opencv-python and scipy to your Python development enviroment.<br>  
 This tool can be used to augment the image and mask files to train an image segmentation model.
-Please refer to <a href="#4">4. MultipleMyeloma Dataset Distortion</a><br>
+Please refer to <a href="#4">4. MultipleMyeloma Dataset Distortion</a>, which is a typical example of offline augmentation.<br>
 You can use the ImageDistorter class to train a segmentation model for your online dataset augmentation tool.
-Image distortion can be time-consuming when used for online dataset augmentation. 
+Image distortion can be time-consuming when used for online dataset augmentation, which will slow down the training-speed.
 <br>
 <h3>
 <a id="2">2. Run ImageDistorter</a>
