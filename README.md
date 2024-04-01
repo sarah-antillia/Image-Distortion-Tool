@@ -193,9 +193,9 @@ By running the command above, the following directories will be created.<br>
     ├─images
     └─masks
 </pre>
-Distorted images<br>
+Distorted train/images<br>
 <img src="./asset/Distorted-MultipleMyeloma-train-images.png" width="1024" height="auto"><br><br>
-Distorted masks  <br>
+Distorted train/masks <br>
 <img src="./asset/Distorted-MultipleMyeloma-train-mask.png"  width="1024" height="auto"><br><br>
 <br>
 
