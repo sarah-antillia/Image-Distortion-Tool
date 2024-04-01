@@ -95,7 +95,7 @@ distorted cranes<br>
 <br>
 MeshedNioh <br>
 <img src="./images/MeshedNioh.png" width="640" height="auto"><br>
-distorted road_signs<br>
+distorted MeshedNioh<br>
 <img src="./distorted/distorted_0.01_rsigma0.5_sigma40_MeshedNioh.png" width="640" height="auto"><br>
 <br>
 road_signs <br>
