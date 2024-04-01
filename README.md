@@ -1,8 +1,8 @@
 <h2> Image-Distortion-Tool (Updated: 2024/04/01)</h2>
 
-<li>2024/04/01: Modified the output files to be a format of "distorted_{ratio}_rsigma{rsigma}_sigma{sigma}_{origina_filename}". </li>
-<li>2024/04/01: Added Distortion of MultipleMyeloma Dataset. </li>
-
+<li>2024/04/01: Modified the output file name to be a format of "distorted_{ratio}_rsigma{rsigma}_sigma{sigma}_{origina_filename}". </li>
+<li>2024/04/01: Added Distortion Example of MultipleMyeloma Dataset. </li>
+<br>
 <a href="#1">1, ImageDistorter</a><br>
 <a href="#2">2, Run ImageDistorter</a><br>
 <a href="#3">3. Seeing Is Believing</a><br>
