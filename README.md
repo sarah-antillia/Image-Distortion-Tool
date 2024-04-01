@@ -1,12 +1,12 @@
 <h2> Image-Distortion-Tool (Updated: 2024/04/01)</h2>
 
 <li>2024/04/01: Modified the output files to be a format of "distorted_{ratio}_rsigma{rsigma}_sigma{sigma}_{origina_filename}". </li>
-<li>2024/04/01: Added Distortion of MultpleMyeloma Dataset. </li>
+<li>2024/04/01: Added Distortion of MultipleMyeloma Dataset. </li>
 
 <a href="#1">1, ImageDistorter</a><br>
 <a href="#2">2, Run ImageDistorter</a><br>
 <a href="#3">3. Seeing Is Believing</a><br>
-<a href="#4">4. MultpleMyeloma Dataset Distortion</a><br>
+<a href="#4">4. MultipleMyeloma Dataset Distortion</a><br>
 <br>
 <h3> 
 <a id="1">1. ImageDistorter</a>
@@ -138,12 +138,12 @@ Distorted rate=0.03 <br>
 
 
 <h3>
-<a id="4">4. MultpleMyeloma Dataset Distortion</a>
+<a id="4">4. MultipleMyeloma Dataset Distortion</a>
 </h3>
 
-<h3>4.1 MultpleMyeloma Dataset</h3>
+<h3>4.1 MultipleMyeloma Dataset</h3>
 
-For a pratical dataset distortion, we have applied this tool to augment MultpleMyeloma Dataset.<br>
+For a pratical dataset distortion, we have applied this tool to augment MultipleMyeloma Dataset.<br>
 <a href="https://drive.google.com/file/d/1QiGah4_0yY-5B7s2kIZ2AjbEVu2ejB3G/view?usp=sharing">MultipleMyeloma-ImageMask-Dataset_V2_X.zip</a>
 <br>
 On that dataset, please see also <a href="https://github.com/sarah-antillia/MultipleMyeloma-ImageMask-Dataset">MultipleMyeloma-ImageMask-Dataset</a>
@@ -166,7 +166,7 @@ Please expand the downloaded ImageMaskDataset and place them under <b>./</b> fol
 Dataset statistics<br>
 <img src="./_MultipleMyeloma_.png" width="540" height="auto"><br>
 
-<h3>4.2 Distort MultpleMyeloma Dataset</h3>
+<h3>4.2 Distort MultipleMyeloma Dataset</h3>
 Please run the following command.<br>
 <pre>
 >python ImageDistorter.py distortion_multiplemyeloma.config
@@ -199,11 +199,11 @@ Distorted masks  <br>
 By merging the generated "./Distorted-MultipleMyeloma/train" and the original "./MultipleMyeloma" folders, we have finally created
 "Distorted-MultipleMyeloma-ImageMask-Dataset".<br>
 Statistics :<br>
-<img src="./_Distorted-MultpleMyeloma-ImageMask-Dataset_.png" width="540" height="auto"><br>
+<img src="./_Distorted-MultipleMyeloma-ImageMask-Dataset_.png" width="540" height="auto"><br>
 <br>
 
 We have uploaded this dataset to the google drive
-<a href="https://drive.google.com/file/d/1mxC2BSbd2btQCeH9oW7nt1FQCklAXsT9/view?usp=sharing">Distorted-MultpleMyeloma-ImageMask-Dataset.zip</a>
+<a href="https://drive.google.com/file/d/1uH8c9zOsglFHKhFDU697NO0Hwnb7S9X6/view?usp=sharing">Distorted-MultipleMyeloma-ImageMask-Dataset.zip</a>
 <br>
 
 
